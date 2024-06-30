@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSupabase } from '../../Supa';
+import Home from '../home/Home';
 
 export default function Login() {
   const supabase = useSupabase();
@@ -9,11 +10,12 @@ export default function Login() {
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: window.location.origin + '/home',
+      },
     });
     if (error) {
       console.log('Error logging in with Google:', error.message);
-    } else {
-      navigate('/home');
     }
   };
 

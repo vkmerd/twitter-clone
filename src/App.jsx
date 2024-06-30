@@ -29,7 +29,6 @@ export default function App() {
       const { data } = supabase.auth.onAuthStateChange((event, session) => {
         if (session) {
           setIsLoggedIn(true);
-          navigate('/home');
         } else {
           setIsLoggedIn(false);
         }
